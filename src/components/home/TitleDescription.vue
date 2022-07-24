@@ -8,7 +8,7 @@
     >
       {{ title }} <span class="error--text">{{ coloredWord }}</span>
     </div>
-    <p :class="'p mt-4 grey--text text--darken-2 text-' + align + ' ' + size">
+    <p :class="' mt-4 grey--text text--darken-2 text-' + align + ' ' + size">
       {{ description }}
     </p>
   </div>

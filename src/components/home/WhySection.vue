@@ -1,10 +1,10 @@
 <template>
-  <div class="why mt-sm-15 mt-10 py-sm-15">
+  <div class="why mt-sm-15 mt-10 py-sm-5">
     <div class="blob-sheet hidden-sm-and-down"></div>
     <v-row class="image-cn">
       <v-col order="2" order-md="1" class="py-10" md="6" cols="12">
         <v-img
-          class="elevation-4 rounded-md"
+          class="elevation-4 rounded-lg"
           :aspect-ratio="16 / 9"
           src="@/assets/team.jpg"
         ></v-img>
@@ -23,26 +23,34 @@
           size="caption text-justify text-sm-center"
           description="Softbox One of the best Software Development Company, SoftBox is at the forefront as the most innovative web developement company. Our cost efficient and structured teamwork justifies our position. Our clients count on our offshore business solutions on a regular basis. From concept design to development, testing & implementation. Our team is here to support and guide you every step of"
         />
-        <v-row
-          class="ml-sm-8 ml-md-0 mt-sm-n8 mt-n10 grey--text text--darken-1"
-        >
-          <v-col cols="6" class="step">
-            <v-icon color="success">mdi-checkbox-marked-circle-outline</v-icon>
-            <span class="caption ml-3">Team Work</span>
-          </v-col>
-          <v-col cols="6" class="step">
-            <v-icon color="success">mdi-checkbox-marked-circle-outline</v-icon>
-            <span class="caption ml-3">Good Invironment</span>
-          </v-col>
-          <v-col cols="6" class="step mt-lg-n15">
-            <v-icon color="success">mdi-checkbox-marked-circle-outline</v-icon>
-            <span class="caption ml-3">Implementation</span>
-          </v-col>
-          <v-col cols="6" class="step mt-lg-n15">
-            <v-icon color="success">mdi-checkbox-marked-circle-outline</v-icon>
-            <span class="caption ml-3">Work Freedom</span>
-          </v-col>
-        </v-row>
+        <div>
+          <v-row class="ml-sm-8 ml-md-0 grey--text text--darken-1">
+            <v-col cols="6" class="step">
+              <v-icon color="success"
+                >mdi-checkbox-marked-circle-outline</v-icon
+              >
+              <span class="caption ml-3">Team Work</span>
+            </v-col>
+            <v-col cols="6" class="step">
+              <v-icon color="success"
+                >mdi-checkbox-marked-circle-outline</v-icon
+              >
+              <span class="caption ml-3">Good Invironment</span>
+            </v-col>
+            <v-col cols="6" class="step">
+              <v-icon color="success"
+                >mdi-checkbox-marked-circle-outline</v-icon
+              >
+              <span class="caption ml-3">Implementation</span>
+            </v-col>
+            <v-col cols="6" class="step">
+              <v-icon color="success"
+                >mdi-checkbox-marked-circle-outline</v-icon
+              >
+              <span class="caption ml-3">Work Freedom</span>
+            </v-col>
+          </v-row>
+        </div>
       </v-col>
     </v-row>
   </div>
@@ -86,7 +94,6 @@ export default {
   min-height: 300px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   position: relative;
   z-index: 1;
 }

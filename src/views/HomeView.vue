@@ -14,6 +14,8 @@
     <CardsContainer :cards="cards" />
 
     <WhySection />
+
+    <OurSkills />
   </v-container>
 </template>
 
@@ -22,9 +24,16 @@ import FirstSection from "@/components/home/FirstSection";
 import TitleDescription from "@/components/home/TitleDescription.vue";
 import CardsContainer from "@/components/home/CardsContainer.vue";
 import WhySection from "@/components/home/WhySection.vue";
+import OurSkills from "@/components/home/OurSkills.vue";
 
 export default {
-  components: { FirstSection, TitleDescription, CardsContainer, WhySection },
+  components: {
+    FirstSection,
+    TitleDescription,
+    CardsContainer,
+    WhySection,
+    OurSkills,
+  },
   data() {
     return {
       cards: [

@@ -15,7 +15,7 @@
           <v-badge dot bordered color="error"></v-badge>
         </div>
       </div>
-      <div class="text-h6 font-weight-bold mt-5 blue--text text--darken-2">
+      <div class="text-h6 mt-5 blue--text text--darken-2">
         {{ title }}
       </div>
       <div class="description">

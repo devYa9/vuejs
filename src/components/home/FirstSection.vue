@@ -30,7 +30,7 @@
         </div>
         <div>
           <p class="subtitle-2 grey--text text--darken-1 mt-5">
-            There are many variations of passages of Lorem ipsum available.
+            There are many variations of passages of Lorem available.
             <br />
             but the majority have suffered alteration.
           </p>
