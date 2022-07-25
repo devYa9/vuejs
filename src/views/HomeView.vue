@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="pb-15">
     <FirstSection />
 
     <TitleDescription
@@ -9,6 +9,7 @@
       align="center"
       size="subtitle-2"
       class="mb-md-8 mb-4"
+      width="p"
     />
 
     <CardsContainer :cards="cards" />
@@ -16,6 +17,28 @@
     <WhySection />
 
     <OurSkills />
+
+    <TitleDescription
+      title="What We Are "
+      coloredWord="Offering?"
+      :description="description"
+      align="center"
+      size="subtitle-2"
+      class="mb-md-0 mb-4"
+      width="p"
+    />
+
+    <OffersSection />
+
+    <TitleDescription
+      title="SoftBox Creative "
+      coloredWord="Team"
+      :description="description"
+      align="center"
+      size="subtitle-2"
+      class="mb-md-0 mb-4 mt-15"
+      width="p"
+    />
   </v-container>
 </template>
 
@@ -25,6 +48,7 @@ import TitleDescription from "@/components/home/TitleDescription.vue";
 import CardsContainer from "@/components/home/CardsContainer.vue";
 import WhySection from "@/components/home/WhySection.vue";
 import OurSkills from "@/components/home/OurSkills.vue";
+import OffersSection from "@/components/home/OffersSection.vue";
 
 export default {
   components: {
@@ -33,6 +57,7 @@ export default {
     CardsContainer,
     WhySection,
     OurSkills,
+    OffersSection,
   },
   data() {
     return {

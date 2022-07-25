@@ -23,7 +23,7 @@
           size="caption text-justify text-sm-center"
           description="Softbox One of the best Software Development Company, SoftBox is at the forefront as the most innovative web developement company. Our cost efficient and structured teamwork justifies our position. Our clients count on our offshore business solutions on a regular basis. From concept design to development, testing & implementation. Our team is here to support and guide you every step of"
         />
-        <div>
+        <div class="mt-n5">
           <v-row class="ml-sm-8 ml-md-0 grey--text text--darken-1">
             <v-col cols="6" class="step">
               <v-icon color="success"
@@ -94,6 +94,7 @@ export default {
   min-height: 300px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   position: relative;
   z-index: 1;
 }

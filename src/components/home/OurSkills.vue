@@ -1,5 +1,5 @@
 <template>
-  <div class="why mt-md-15 mt-3 py-md-10">
+  <div class="why mt-md-15 mt-3 pt-md-10 pb-0">
     <v-row class="image-cn">
       <v-col order="2" order-md="2" class="py-10" md="6" cols="12">
         <v-img class="" width="100%" src="@/assets/image-3.png"></v-img>

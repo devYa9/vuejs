@@ -68,7 +68,7 @@ export default {
 }
 
 .v-card {
-  box-shadow: 0px 0px 25px -7px rgb(201, 201, 201) !important;
+  box-shadow: 0px 0px 20px -7px rgb(201, 201, 201) !important;
   border: 1px solid transparent;
   transition: all 0.3s;
   cursor: pointer;

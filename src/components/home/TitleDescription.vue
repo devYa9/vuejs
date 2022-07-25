@@ -8,7 +8,16 @@
     >
       {{ title }} <span class="error--text">{{ coloredWord }}</span>
     </div>
-    <p :class="' mt-4 grey--text text--darken-2 text-' + align + ' ' + size">
+    <p
+      :class="
+        ' mt-4 grey--text text--darken-2 text-' +
+        align +
+        ' ' +
+        size +
+        ' ' +
+        width
+      "
+    >
       {{ description }}
     </p>
   </div>
@@ -16,7 +25,7 @@
 
 <script>
 export default {
-  props: ["title", "coloredWord", "description", "align", "size"],
+  props: ["title", "coloredWord", "description", "align", "size", "width"],
 };
 </script>
 
