@@ -39,6 +39,22 @@
       class="mb-md-0 mb-4 mt-15"
       width="p"
     />
+
+    <TeamSection />
+
+    <TitleDescription
+      title="Our valuable "
+      coloredWord="Client"
+      :description="description"
+      align="center"
+      size="subtitle-2"
+      class="mb-md-0 mb-4 mt-15"
+      width="p"
+    />
+
+    <ClientsSection />
+
+    <QuoteSection />
   </v-container>
 </template>
 
@@ -49,6 +65,9 @@ import CardsContainer from "@/components/home/CardsContainer.vue";
 import WhySection from "@/components/home/WhySection.vue";
 import OurSkills from "@/components/home/OurSkills.vue";
 import OffersSection from "@/components/home/OffersSection.vue";
+import TeamSection from "@/components/home/TeamSection.vue";
+import ClientsSection from "@/components/home/ClientsSection.vue";
+import QuoteSection from "@/components/home/QuoteSection.vue";
 
 export default {
   components: {
@@ -58,6 +77,9 @@ export default {
     WhySection,
     OurSkills,
     OffersSection,
+    TeamSection,
+    ClientsSection,
+    QuoteSection,
   },
   data() {
     return {
