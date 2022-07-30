@@ -30,8 +30,8 @@
         </div>
         <div>
           <p class="subtitle-2 grey--text text--darken-1 mt-5">
-            There's no shortage of remarkable ideas, <br />
-            what's missing is the will to execute them
+            Turning an idea into a solution that adds value<br />
+            from a customer's perspective.
           </p>
         </div>
         <div class="call-to-action my-5">
