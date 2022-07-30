@@ -12,6 +12,7 @@
         :name="member.name"
         :title="member.title"
         :profile="member.profile"
+        :desc="member.desc"
       />
     </v-col>
   </v-row>
@@ -28,10 +29,26 @@ export default {
           name: "Yassine El Aatmani",
           title: "Web Developer",
           profile: "1.jpg",
+          desc: "Create reliable and high-performing web-based applications and services.",
         },
-        { name: "Abedin Abed", title: "Creative Director", profile: "2.jpg" },
-        { name: "Jabedin Jabed", title: "Project Manager", profile: "3.jpg" },
-        { name: "Moin Khan", title: "Art Director", profile: "4.jpg" },
+        {
+          name: "Abedin Abed",
+          title: "Creative Director",
+          profile: "2.jpg",
+          desc: "Building an environment for the creative team to work in and overseeing their ideas and projects",
+        },
+        {
+          name: "Jabedin Jabed",
+          title: "Project Manager",
+          profile: "3.jpg",
+          desc: "Select, lead and motivate your project team from both internal and external stakeholder organisations",
+        },
+        {
+          name: "Moin Khan",
+          title: "Art Director",
+          profile: "4.jpg",
+          desc: "work on the campaign from the outset, managing details about the client, product, target audience and required advertising message",
+        },
       ],
     };
   },

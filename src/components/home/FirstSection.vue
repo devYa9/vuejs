@@ -58,7 +58,7 @@
       md="6"
       lg="6"
     >
-      <v-img :src="require('@/assets/image-2.png')"> </v-img>
+      <v-img eager :src="require('@/assets/image-2.png')"> </v-img>
     </v-col>
   </v-row>
 </template>

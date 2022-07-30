@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="5" md="12" class="d-flex justify-center">
           <v-avatar :size="size">
-            <v-img :src="profileImage(profile)"></v-img>
+            <v-img eager :src="profileImage(profile)"></v-img>
           </v-avatar>
           <div class="avatar-bg hidden-md-and-down"></div>
         </v-col>
@@ -32,8 +32,7 @@
               mt-4
             "
           >
-            Lorem, ipsum dolor sit amet adipisicing elit. Asperiores, nobis! and
-            some other !
+            {{ desc }}
           </div>
         </v-col>
       </v-row>
@@ -43,7 +42,7 @@
 
 <script>
 export default {
-  props: ["name", "title", "profile"],
+  props: ["name", "title", "profile", "desc"],
   methods: {
     profileImage(link) {
       return require("../../assets/team/" + link);

@@ -25,6 +25,7 @@ export default {
 
 .v-card:hover {
   border-color: #1976d2;
-  top: -3px;
+  transform: scale(1.03);
+  z-index: 3;
 }
 </style>

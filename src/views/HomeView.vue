@@ -55,6 +55,18 @@
     <ClientsSection />
 
     <QuoteSection />
+
+    <TitleDescription
+      title="Get our latest "
+      coloredWord="Newsetter"
+      description="Offer your business with the best assistance for growth."
+      align="center"
+      size="subtitle-2"
+      class="mb-md-0 mb-4 mt-15"
+      width="p"
+    />
+
+    <NewsletterInput />
   </v-container>
 </template>
 
@@ -68,6 +80,7 @@ import OffersSection from "@/components/home/OffersSection.vue";
 import TeamSection from "@/components/home/TeamSection.vue";
 import ClientsSection from "@/components/home/ClientsSection.vue";
 import QuoteSection from "@/components/home/QuoteSection.vue";
+import NewsletterInput from "@/components/home/NewsletterInput.vue";
 
 export default {
   components: {
@@ -80,6 +93,7 @@ export default {
     TeamSection,
     ClientsSection,
     QuoteSection,
+    NewsletterInput,
   },
   data() {
     return {

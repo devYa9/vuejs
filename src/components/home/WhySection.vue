@@ -7,6 +7,7 @@
           class="elevation-4 rounded-lg"
           :aspect-ratio="16 / 9"
           src="@/assets/team.jpg"
+          eager
         ></v-img>
       </v-col>
       <v-col
@@ -78,6 +79,7 @@ export default {
 <style scoped>
 .v-icon {
   background: linear-gradient(to top, #1e88e5 0%, #18ffff 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

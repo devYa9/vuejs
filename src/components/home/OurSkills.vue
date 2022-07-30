@@ -15,7 +15,7 @@
           title="We Have Strong "
           coloredWord="Skill"
           align="center text-md-start"
-          size="caption text-sm-center mt-6"
+          size="caption text-start mt-6"
           description="Softbox One of the best Software Development Company, SoftBox is at the forefront as the most innovative web developement company. Our cost efficient and structured teamwork justifies our position. Our clients count on our offshore business solutions on a regular basis. From concept design to development, testing & implementation. "
         />
         <div
