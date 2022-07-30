@@ -1,4 +1,4 @@
-# e-jewelry
+# SoftBox
 
 ## Project setup
 ```
