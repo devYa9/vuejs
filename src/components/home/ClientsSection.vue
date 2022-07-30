@@ -3,6 +3,7 @@
     <v-row class="shadow pa-2" justify="center">
       <v-col md="3" cols="6" class="d-flex justify-center align-center">
         <v-img
+          eager
           src="../../assets/companies/spotify.svg"
           max-width="140"
           max-height="70"
@@ -10,6 +11,7 @@
       </v-col>
       <v-col md="3" cols="6" class="d-flex justify-center align-center">
         <v-img
+          eager
           src="../../assets/companies/grab.svg"
           max-width="140"
           max-height="70"
@@ -18,6 +20,7 @@
 
       <v-col md="3" cols="6" class="d-flex justify-center align-center">
         <v-img
+          eager
           src="../../assets/companies/slack.svg"
           max-width="140"
           max-height="70"
@@ -25,6 +28,7 @@
       </v-col>
       <v-col md="3" cols="6" class="d-flex justify-center align-center">
         <v-img
+          eager
           src="../../assets/companies/tunein.svg"
           max-width="140"
           max-height="70"

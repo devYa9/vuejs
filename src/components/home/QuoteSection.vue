@@ -17,7 +17,11 @@
             md="5"
             class="image-container"
           >
-            <v-img class="quote-image" src="../../assets/team/2.jpg"></v-img>
+            <v-img
+              eager
+              class="quote-image"
+              src="../../assets/team/2.jpg"
+            ></v-img>
             <div class="avatar-bg hidden-md-and-down"></div>
           </v-col>
           <v-col

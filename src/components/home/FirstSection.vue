@@ -30,9 +30,8 @@
         </div>
         <div>
           <p class="subtitle-2 grey--text text--darken-1 mt-5">
-            There are many variations of passages of Lorem available.
-            <br />
-            but the majority have suffered alteration.
+            There's no shortage of remarkable ideas, <br />
+            what's missing is the will to execute them
           </p>
         </div>
         <div class="call-to-action my-5">

@@ -1,7 +1,7 @@
 <template>
   <v-card flat class="py-7 px-5 d-flex justify-start align-center rounded-lg">
     <div>
-      <v-img width="80" height="80" :src="src"></v-img>
+      <v-img eager width="80" height="80" :src="src"></v-img>
     </div>
     <div class="text-h6 mx-5 grey--text text--darken-2">{{ title }}</div>
   </v-card>
