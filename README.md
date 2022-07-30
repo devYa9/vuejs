@@ -1,4 +1,4 @@
-# e-jewelry
+# first-landing-page
 
 ## Project setup
 ```
