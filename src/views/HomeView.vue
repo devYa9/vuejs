@@ -127,6 +127,9 @@ export default {
         "Softbox One of the best Software Development Company, SoftBox is at the forefront as the most innovative web developement company. We Offer ",
     };
   },
+  mounted() {
+    window.scrollTo(0, 0);
+  },
 };
 </script>
 
