@@ -77,7 +77,6 @@ export default {
         oldPrice: "250.00",
         image: "assets/products/headset.png",
       },
-      currentClass: "animate__fadeInRight",
       currentIndex: 0,
       products: [
         {
@@ -96,6 +95,22 @@ export default {
           oldPrice: "100.00",
           image: "assets/products/puppy.png",
         },
+        {
+          name: "Wedding Flower Sneaker",
+          category: "Shoes",
+          rating: "1401",
+          currentPrice: "60.00",
+          oldPrice: "120.00",
+          image: "assets/products/shoes.png",
+        },
+        {
+          name: "Air Jordan 4 Black & Yellow",
+          category: "Shoes",
+          rating: "1401",
+          currentPrice: "160.00",
+          oldPrice: "320.00",
+          image: "assets/products/shoes-1.png",
+        },
       ],
     };
   },
@@ -107,7 +122,7 @@ export default {
         this.currentIndex = 0;
       }
       this.currentProduct = this.products[this.currentIndex];
-    }, 4000);
+    }, 5000);
   },
   computed: {
     sheetHeight() {

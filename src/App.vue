@@ -36,7 +36,7 @@ export default {
 }
 
 .animate__animated {
-  animation-duration: 1s !important;
+  animation-duration: 0.3s !important;
 }
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200&display=swap");

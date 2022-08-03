@@ -1,76 +1,80 @@
 <template>
   <v-container class="pb-15 page">
-    <FirstSection />
+    <FirstSection @loaded="sectionIsLoaded" />
+    <LoaderView v-if="!isLoaded" />
 
-    <TitleDescription
-      title="What We "
-      coloredWord="Do?"
-      :description="description"
-      align="center"
-      size="subtitle-2"
-      class="mb-md-8 mb-4"
-      width="p"
-    />
+    <div v-if="isLoaded">
+      <TitleDescription
+        title="What We "
+        coloredWord="Do?"
+        :description="description"
+        align="center"
+        size="subtitle-2"
+        class="mb-md-8 mb-4"
+        width="p"
+      />
 
-    <CardsContainer :cards="cards" />
+      <CardsContainer :cards="cards" />
 
-    <WhySection />
+      <WhySection />
 
-    <OurSkills />
+      <OurSkills />
 
-    <TitleDescription
-      title="What We Are "
-      coloredWord="Offering?"
-      :description="description"
-      align="center"
-      size="subtitle-2"
-      class="mb-md-0 mb-4"
-      width="p"
-    />
+      <TitleDescription
+        title="What We Are "
+        coloredWord="Offering?"
+        :description="description"
+        align="center"
+        size="subtitle-2"
+        class="mb-md-0 mb-4"
+        width="p"
+      />
 
-    <OffersSection />
+      <OffersSection />
 
-    <TitleDescription
-      title="SoftBox Creative "
-      coloredWord="Team"
-      :description="description"
-      align="center"
-      size="subtitle-2"
-      class="mb-md-0 mb-4 mt-15"
-      width="p"
-    />
+      <TitleDescription
+        title="SoftBox Creative "
+        coloredWord="Team"
+        :description="description"
+        align="center"
+        size="subtitle-2"
+        class="mb-md-0 mb-4 mt-15"
+        width="p"
+      />
 
-    <TeamSection />
+      <TeamSection />
 
-    <TitleDescription
-      title="Our valuable "
-      coloredWord="Client"
-      :description="description"
-      align="center"
-      size="subtitle-2"
-      class="mb-md-0 mb-4 mt-15"
-      width="p"
-    />
+      <TitleDescription
+        title="Our valuable "
+        coloredWord="Client"
+        :description="description"
+        align="center"
+        size="subtitle-2"
+        class="mb-md-0 mb-4 mt-15"
+        width="p"
+      />
 
-    <ClientsSection />
+      <ClientsSection />
 
-    <QuoteSection />
+      <QuoteSection />
 
-    <TitleDescription
-      title="Get our latest "
-      coloredWord="Newsetter"
-      description="Offer your business with the best assistance for growth."
-      align="center"
-      size="subtitle-2"
-      class="mb-md-0 mb-4 mt-15"
-      width="p"
-    />
+      <TitleDescription
+        title="Get our latest "
+        coloredWord="Newsetter"
+        description="Offer your business with the best assistance for growth."
+        align="center"
+        size="subtitle-2"
+        class="mb-md-0 mb-4 mt-15"
+        width="p"
+      />
 
-    <NewsletterInput />
+      <NewsletterInput />
+    </div>
   </v-container>
 </template>
 
 <script>
+import LoaderView from "@/components/LoaderView.vue";
 import FirstSection from "@/components/home/FirstSection";
 import TitleDescription from "@/components/home/TitleDescription.vue";
 import CardsContainer from "@/components/home/CardsContainer.vue";
@@ -94,9 +98,11 @@ export default {
     ClientsSection,
     QuoteSection,
     NewsletterInput,
+    LoaderView,
   },
   data() {
     return {
+      isLoaded: false,
       cards: [
         {
           title: "Consultation",
@@ -129,6 +135,12 @@ export default {
   },
   mounted() {
     window.scrollTo(0, 0);
+  },
+  methods: {
+    sectionIsLoaded() {
+      console.log("section is loaded");
+      this.isLoaded = true;
+    },
   },
 };
 </script>

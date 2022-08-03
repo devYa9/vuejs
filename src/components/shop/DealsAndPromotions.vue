@@ -25,6 +25,7 @@
             </v-col>
             <v-col class="box-img" cols="12" md="5">
               <v-img
+                eager
                 :class="'image-' + screen"
                 src="../../assets/products/xbox-controller.png"
               ></v-img>
@@ -56,6 +57,7 @@
             </v-col>
             <v-col class="box-img" cols="12" md="5">
               <v-img
+                eager
                 :class="'image-' + screen"
                 src="../../assets/products/clock.png"
               ></v-img>
