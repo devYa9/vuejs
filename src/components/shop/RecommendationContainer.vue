@@ -12,7 +12,7 @@
           v-for="box in boxes"
           :key="box.title"
           :class="{ 'hidden-md-and-down': box.isUser }"
-          class="pa-2 px-0 overflow-hidden"
+          class="pa-2 overflow-hidden"
         >
           <RecommendationCard
             :title="box.title"

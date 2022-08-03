@@ -56,6 +56,7 @@
       sm="5"
       md="6"
       lg="6"
+      class="animate__animated animate__fadeInDown"
     >
       <v-img eager :src="require('@/assets/image-2.png')"> </v-img>
     </v-col>

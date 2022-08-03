@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="page">
     <v-row class="coming">
       <v-col cols="12" md="6" class="d-flex align-center justify-center">
         <div

@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pb-15">
+  <v-container class="pb-15 page">
     <FirstSection />
 
     <TitleDescription

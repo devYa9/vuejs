@@ -12,6 +12,7 @@
         <v-col cols="5" lg="4" class="pa-2 d-flex justify-center align-center">
           <v-avatar size="70" :tile="!isUser">
             <v-img
+              eager
               :src="getImageLink(image)"
               :class="{ 'rounded-circle': false }"
             ></v-img>
