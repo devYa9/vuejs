@@ -42,6 +42,10 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200&display=swap");
 $body-font-family: "poppins", sans-serif !default;
 
+* {
+  font-family: "poppins", sans-serif !important;
+}
+
 .v-application {
   * {
     font-family: $body-font-family, sans-serif !important;
@@ -50,6 +54,6 @@ $body-font-family: "poppins", sans-serif !default;
 
 .v-application .text-lg-h3,
 .v-application .text-h5 {
-  font-family: $body-font-family, sans-serif !important;
+  font-family: "poppins", sans-serif !important;
 }
 </style>
