@@ -3,7 +3,7 @@
     min-height="500"
     :height="sheetHeight"
     color="blue lighten-5"
-    class="pa-md-10 pa-5"
+    class="pa-md-10 pb-md-5 pa-5"
   >
     <v-row class="row-100">
       <v-col
@@ -59,6 +59,17 @@
         </transition>
       </v-col>
     </v-row>
+    <div class="hidden-sm-and-down">
+      <div class="dots d-flex justify-center pa-0 mt-3">
+        <div
+          class="dot"
+          :class="i == currentIndex ? 'blue' : 'grey'"
+          v-for="(slide, i) in products"
+          :key="slide.name"
+          @click="nextSlide(i)"
+        ></div>
+      </div>
+    </div>
   </v-sheet>
 </template>
 
@@ -69,14 +80,6 @@ export default {
   data() {
     return {
       show: true,
-      currentProduct: {
-        name: "Razer Kraken Pro V2 Gaming Headset",
-        category: "Computer & Accessories",
-        rating: "1245",
-        currentPrice: "125.00",
-        oldPrice: "250.00",
-        image: "assets/products/headset.png",
-      },
       currentIndex: 0,
       products: [
         {
@@ -112,19 +115,31 @@ export default {
           image: "assets/products/shoes-1.png",
         },
       ],
+      sl: this.startSlider(),
     };
   },
-  mounted() {
-    setInterval(() => {
-      if (this.currentIndex < this.products.length - 1) {
-        this.currentIndex += 1;
-      } else {
-        this.currentIndex = 0;
-      }
-      this.currentProduct = this.products[this.currentIndex];
-    }, 5000);
+  mounted() {},
+  methods: {
+    nextSlide(index) {
+      clearInterval(this.sl);
+      this.currentIndex = index;
+      this.sl = this.startSlider();
+    },
+    startSlider() {
+      let slider = setInterval(() => {
+        if (this.currentIndex < this.products.length - 1) {
+          this.currentIndex += 1;
+        } else {
+          this.currentIndex = 0;
+        }
+      }, 5000);
+      return slider;
+    },
   },
   computed: {
+    currentProduct() {
+      return this.products[this.currentIndex];
+    },
     sheetHeight() {
       switch (this.$vuetify.breakpoint.name) {
         // Use in computed property
@@ -147,6 +162,18 @@ export default {
 </script>
 
 <style scoped>
+.dots {
+  gap: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
 #product-name {
   line-height: 22px;
 }

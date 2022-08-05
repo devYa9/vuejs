@@ -4,8 +4,7 @@
     <RecommendationContainer />
     <ShopByCategories />
     <DealsAndPromotions />
-    <ProductsContainer id="3" />
-    <ProductsContainer id="1" />
+    <ProductsContainer />
   </v-container>
 </template>
 
@@ -25,6 +24,15 @@ export default {
   },
   mounted() {
     window.scrollTo(0, 0);
+
+    fetch("https://api.escuelajs.co/api/v1/products")
+      .then((res) => res.json())
+      .then((res) => {
+        // console.log(res);
+        this.$store.state.products = res;
+        console.log(this.$store.state.products);
+      })
+      .catch((err) => console.log(err));
   },
 };
 </script>

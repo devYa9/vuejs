@@ -48,16 +48,10 @@ export default {
     };
   },
   components: { ProductCard },
-  mounted() {
-    fetch("https://api.escuelajs.co/api/v1/products")
-      .then((res) => res.json())
-      .then((res) => (this.products = res))
-      .catch((err) => console.log(err));
-  },
   computed: {
     productsToShow() {
-      let products = this.products.filter((p) => p.category.id == this.id);
-      return products.splice(8, 4);
+      let products = this.$store.getters.productsByCategory(4);
+      return products;
     },
   },
 };
