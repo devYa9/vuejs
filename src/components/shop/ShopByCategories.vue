@@ -51,22 +51,22 @@ export default {
         {
           name: "Beauty picks",
           image: "assets/products/beauty-picks.png",
-          to: "/shop/category/beauty",
+          to: "/shop/category/1",
         },
         {
           name: "Computer & Accessories",
           image: "assets/products/macbook.png",
-          to: "/shop/category/computer",
+          to: "/shop/category/2",
         },
         {
           name: "Video games",
           image: "assets/products/vr.png",
-          to: "/shop/category/games",
+          to: "/shop/category/3",
         },
         {
-          name: "Toys & Games",
-          image: "assets/products/puppy.png",
-          to: "/shop/category/toys",
+          name: "Shoes",
+          image: "assets/products/shoes.png",
+          to: "/shop/category/4",
         },
       ],
     };

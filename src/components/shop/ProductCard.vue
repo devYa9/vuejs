@@ -10,7 +10,17 @@
               max-height="250"
               width="100%"
               :src="product.images[0]"
-            ></v-img>
+            >
+              <v-sheet
+                v-if="showBadge"
+                height="fit-content"
+                color="orange"
+                class="py-0 px-2 ma-2 white--text rounded-lg"
+                ><span class="caption font-weight-bold"
+                  >Best Seller</span
+                ></v-sheet
+              >
+            </v-img>
           </v-avatar>
         </v-col>
         <v-col cols="12" md="12" class="pa-0 py-4">
@@ -31,7 +41,11 @@
                   product-name
                 "
               >
-                {{ product.title }}
+                {{
+                  product.title.length > 25
+                    ? product.title.slice(0, 25) + "..."
+                    : product.title
+                }}
               </div>
             </v-col>
             <v-col cols="12" class="py-0" order="3">
@@ -53,9 +67,9 @@
                 <v-btn
                   :ripple="false"
                   icon
-                  small
                   color="error"
-                  @click="isFavorite = !isFavorite"
+                  @click="favorite(product)"
+                  class="remove-bg"
                   ><v-icon
                     >mdi-heart{{ isFavorite ? "" : "-outline" }}</v-icon
                   ></v-btn
@@ -63,8 +77,13 @@
                 <div class="text-md-h5 subtitle-1 font-weight-bold">
                   ${{ product.price }}
                 </div>
-                <v-btn :ripple="false" icon small color="blue darken-2"
-                  ><v-icon>mdi-cart-plus</v-icon></v-btn
+                <v-btn
+                  :ripple="false"
+                  text
+                  small
+                  class="text-capitalize pe-0"
+                  color="blue darken-2"
+                  >More <v-icon>mdi-chevron-right</v-icon></v-btn
                 >
               </div>
             </v-col>
@@ -77,11 +96,29 @@
 
 <script>
 export default {
-  props: ["product"],
+  props: ["product", "showBadge"],
   data() {
-    return {
-      isFavorite: false,
-    };
+    return {};
+  },
+  methods: {
+    favorite(product) {
+      if (!this.isFavorite) {
+        this.$store.dispatch("addToFavorite", product);
+      } else {
+        this.$store.dispatch("removeFromFavorite", product);
+      }
+    },
+  },
+  computed: {
+    isFavorite() {
+      let status = false;
+      this.$store.getters.favoriteProducts.forEach((p) => {
+        if (p.id == this.product.id) {
+          status = true;
+        }
+      });
+      return status;
+    },
   },
 };
 </script>

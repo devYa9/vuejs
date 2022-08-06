@@ -138,7 +138,6 @@ export default {
   },
   methods: {
     sectionIsLoaded() {
-      console.log("section is loaded");
       this.isLoaded = true;
     },
   },

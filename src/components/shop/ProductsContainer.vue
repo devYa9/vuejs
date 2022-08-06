@@ -1,6 +1,7 @@
 <template>
   <div class="mb-5">
     <div
+      v-if="showMore"
       class="
         font-weight-bold
         mt-10
@@ -10,7 +11,7 @@
         align-center
       "
     >
-      <div class="">Last viewed</div>
+      <div class="">{{ name }}</div>
       <div>
         <v-btn
           :ripple="false"
@@ -31,7 +32,7 @@
           v-for="product in productsToShow"
           :key="product.id"
         >
-          <ProductCard :product="product" />
+          <ProductCard :showBadge="showBadge" :product="product" />
         </v-col>
       </v-row>
     </div>
@@ -41,7 +42,7 @@
 <script>
 import ProductCard from "./ProductCard.vue";
 export default {
-  props: ["id"],
+  props: ["id", "name", "showBadge", "limit", "showMore"],
   data() {
     return {
       products: [],
@@ -50,7 +51,10 @@ export default {
   components: { ProductCard },
   computed: {
     productsToShow() {
-      let products = this.$store.getters.productsByCategory(4);
+      let products = this.$store.getters.productsByCategory(this.id);
+      if (this.limit != 0) {
+        products = products.splice(0, this.limit);
+      }
       return products;
     },
   },

@@ -27,10 +27,26 @@ export default {
   data: () => ({
     //
   }),
+  mounted() {
+    fetch("https://api.escuelajs.co/api/v1/products")
+      .then((res) => res.json())
+      .then((res) => {
+        // console.log(res);
+        this.$store.state.products = res;
+      })
+      .catch((err) => console.log(err));
+  },
 };
 </script>
 
-<style lang="scss" scoped>
+<style>
+.remove-bg::after,
+.remove-bg::before {
+  background: transparent !important;
+}
+</style>
+
+<style scoped lang="scss">
 .page {
   position: relative;
 }

@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ShopView from '../views/ShopView.vue'
 import ComingSoon from '../views/ComingSoon.vue'
+import ProductsByCategory from "../components/shop/ProductsByCategory";
+
 
 Vue.use(VueRouter)
 
@@ -15,6 +17,11 @@ const routes = [{
     path: '/shop',
     name: 'shop',
     component: ShopView
+  },
+  {
+    path: '/shop/category/:id',
+    name: 'category',
+    component: ProductsByCategory
   },
   {
     path: '/:catchAll(.*)',

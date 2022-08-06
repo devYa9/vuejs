@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    products: []
+    products: [],
+    favoriteProducts: []
   },
   getters: {
     productsByCategory: state => (id) => {
@@ -13,11 +14,31 @@ export default new Vuex.Store({
         return product.category.id == id
       })
     },
-    favorite: state => {
-      return state.products[0]
+    favoriteProducts: state => {
+      return state.favoriteProducts
+    },
+    cartProducts: state => {
+      return state.products.slice(0, 4)
     }
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    addToFavorite: (state, product) => {
+      state.favoriteProducts.push(product)
+    },
+    removeFromFavorite: (state, product) => {
+      state.favoriteProducts = state.favoriteProducts.filter(p => {
+        return p.id != product.id
+      })
+    },
+
+  },
+  actions: {
+    addToFavorite: (context, product) => {
+      context.commit('addToFavorite', product)
+    },
+    removeFromFavorite: (context, product) => {
+      context.commit('removeFromFavorite', product)
+    }
+  },
   modules: {}
 })

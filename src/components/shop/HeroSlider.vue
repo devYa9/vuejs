@@ -4,6 +4,7 @@
     :height="sheetHeight"
     color="blue lighten-5"
     class="pa-md-10 pb-md-5 pa-5"
+    v-if="!isLoading"
   >
     <v-row class="row-100">
       <v-col
@@ -116,6 +117,7 @@ export default {
         },
       ],
       sl: this.startSlider(),
+      isLoading: true,
     };
   },
   mounted() {},
@@ -134,6 +136,11 @@ export default {
         }
       }, 5000);
       return slider;
+    },
+  },
+  watch: {
+    isLoading() {
+      this.$emit("loaded");
     },
   },
   computed: {
@@ -157,6 +164,13 @@ export default {
           return 500;
       }
     },
+  },
+  created() {
+    const imageToPreload = new Image();
+    imageToPreload.src = require("@/assets/products/headset.png");
+    imageToPreload.onload = () => {
+      this.isLoading = false;
+    };
   },
 };
 </script>
