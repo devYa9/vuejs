@@ -37,10 +37,10 @@
           <v-menu
             v-model="shoppingCart"
             :close-on-content-click="false"
-            offset-x
+            eager
             offset-y
             :min-width="minWidth"
-            class="mr-3"
+            transition="slide-x-transition"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -151,10 +151,10 @@
           <v-menu
             v-model="favoritesCart"
             :close-on-content-click="false"
-            offset-x
+            eager
             offset-y
             :min-width="minWidth"
-            class="mr-3"
+            transition="slide-x-transition"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
