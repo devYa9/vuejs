@@ -39,7 +39,8 @@
             :close-on-content-click="false"
             offset-x
             offset-y
-            max-width="340"
+            :min-width="minWidth"
+            width="fit-content"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -62,7 +63,7 @@
               </v-btn>
             </template>
 
-            <v-card min-width="fit-content">
+            <v-card :min-width="minWidth" width="fit-content">
               <v-list class="py-1">
                 <v-list-item class="py-0">
                   <v-list-item-content>
@@ -152,7 +153,8 @@
             :close-on-content-click="false"
             offset-x
             offset-y
-            max-width="340"
+            :min-width="minWidth"
+            width="fit-content"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -175,7 +177,7 @@
               </v-btn>
             </template>
 
-            <v-card min-width="320">
+            <v-card :min-width="minWidth" width="fit-content">
               <v-list class="py-1">
                 <v-list-item>
                   <v-list-item-content>
@@ -320,6 +322,21 @@ export default {
     },
     cartProducts() {
       return this.$store.getters.cartProducts;
+    },
+    minWidth() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xm":
+          return "280";
+        case "sm":
+          return "300";
+        case "md":
+          return "320";
+        case "lg":
+          return "320";
+        case "xl":
+          return "350";
+      }
+      return "250";
     },
   },
   methods: {
