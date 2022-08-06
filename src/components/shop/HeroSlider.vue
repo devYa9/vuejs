@@ -1,6 +1,6 @@
 <template>
   <v-sheet
-    min-height="500"
+    min-height="fit-content"
     :height="sheetHeight"
     color="blue lighten-5"
     class="pa-md-10 pb-md-5 pa-5"
@@ -151,7 +151,7 @@ export default {
       switch (this.$vuetify.breakpoint.name) {
         // Use in computed property
         case "xs":
-          return "570px";
+          return "600px";
         case "sm":
           return "570px";
         case "md":

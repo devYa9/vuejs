@@ -37,9 +37,9 @@
           <v-menu
             v-model="shoppingCart"
             :close-on-content-click="false"
-            :nudge-width="200"
             offset-x
             offset-y
+            max-width="340"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -62,7 +62,7 @@
               </v-btn>
             </template>
 
-            <v-card min-width="320">
+            <v-card min-width="fit-content">
               <v-list class="py-1">
                 <v-list-item class="py-0">
                   <v-list-item-content>
@@ -150,9 +150,9 @@
           <v-menu
             v-model="favoritesCart"
             :close-on-content-click="false"
-            :nudge-width="200"
             offset-x
             offset-y
+            max-width="340"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
