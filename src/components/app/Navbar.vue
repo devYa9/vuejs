@@ -35,67 +35,226 @@
           </v-btn>
 
           <v-menu
-            v-model="menu"
+            v-model="shoppingCart"
             :close-on-content-click="false"
             :nudge-width="200"
             offset-x
             offset-y
           >
             <template v-slot:activator="{ on, attrs }">
-              <v-btn icon color="blue darken-2" dark v-bind="attrs" v-on="on">
-                <v-icon>mdi-cart-outline</v-icon>
+              <v-btn
+                class="remove-bg"
+                icon
+                color="blue darken-2"
+                dark
+                v-bind="attrs"
+                v-on="on"
+                :ripple="false"
+              >
+                <v-icon>mdi-cart{{ shoppingCart ? "" : "-outline" }}</v-icon>
+                <v-badge
+                  v-if="cartProducts.length > 0"
+                  bordered
+                  :content="cartProducts.length"
+                  color="red"
+                  light
+                ></v-badge>
               </v-btn>
             </template>
 
-            <v-card min-width="300">
+            <v-card min-width="320">
               <v-list class="py-1">
-                <v-list-item>
+                <v-list-item class="py-0">
                   <v-list-item-content>
                     <v-list-item-title class="font-weight-bold"
                       >Shoping Cart</v-list-item-title
                     >
                   </v-list-item-content>
                   <v-list-item-action-text>
-                    <span class="body-1">0 Items</span>
+                    <span class="caption"
+                      >{{ cartProducts.length }}
+                      {{ cartProducts.length > 1 ? "Items" : "Item" }}</span
+                    >
                   </v-list-item-action-text>
                 </v-list-item>
               </v-list>
 
               <v-divider></v-divider>
 
-              <v-list>
+              <v-list v-if="cartProducts.length > 0">
+                <v-list-item v-for="product in cartProducts" :key="product.id">
+                  <v-card width="100%" flat link class="pa-1">
+                    <v-row>
+                      <v-col cols="3">
+                        <v-avatar size="60" tile class="rounded-lg">
+                          <v-img :src="product.images[0]"></v-img>
+                        </v-avatar>
+                      </v-col>
+                      <v-col cols="9">
+                        <div class="d-flex align-center justify-space-between">
+                          <div class="subtitle-2 d-block">
+                            {{
+                              product.title.length > 25
+                                ? product.title.slice(0, 25) + "..."
+                                : product.title
+                            }}
+                          </div>
+                          <div class="">
+                            <v-btn
+                              x-small
+                              icon
+                              :ripple="false"
+                              class="remove-bg pa-0"
+                              link
+                              to="/exit"
+                            >
+                              <v-icon>mdi-close</v-icon>
+                            </v-btn>
+                          </div>
+                        </div>
+                        <div class="caption">
+                          {{ product.category.name }}
+                        </div>
+                        <div class="caption d-flex justify-space-between">
+                          <div class="qte">Qte x 5</div>
+                          <div class="prix">$400.00</div>
+                        </div>
+                      </v-col>
+                    </v-row>
+                  </v-card>
+                </v-list-item>
+              </v-list>
+              <v-list v-else class="py-0">
                 <v-list-item>
-                  <v-list-item-title>Empty</v-list-item-title>
+                  <div class="body-2">No products yet !</div>
+                </v-list-item>
+              </v-list>
+              <div v-if="cartProducts.length > 0">
+                <v-divider></v-divider>
+                <v-card-actions>
+                  <v-btn
+                    dark
+                    depressed
+                    block
+                    class="body-2"
+                    color="#32e2a9"
+                    @click="shoppingCart = false"
+                    link
+                    to="/checkout"
+                    >Checkout <v-icon>mdi-chevron-right</v-icon></v-btn
+                  >
+                </v-card-actions>
+              </div>
+            </v-card>
+          </v-menu>
+          <v-menu
+            v-model="favoritesCart"
+            :close-on-content-click="false"
+            :nudge-width="200"
+            offset-x
+            offset-y
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                class="remove-bg"
+                icon
+                color="blue darken-2"
+                dark
+                v-bind="attrs"
+                v-on="on"
+                :ripple="false"
+              >
+                <v-icon>mdi-heart{{ favoritesCart ? "" : "-outline" }}</v-icon>
+                <v-badge
+                  v-if="favoriteProducts.length > 0"
+                  :content="favoriteProducts.length"
+                  bordered
+                  color="red"
+                  light
+                ></v-badge>
+              </v-btn>
+            </template>
+
+            <v-card min-width="320">
+              <v-list class="py-1">
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title class="font-weight-bold"
+                      >Favorites</v-list-item-title
+                    >
+                  </v-list-item-content>
+                  <v-list-item-action-text>
+                    <span class="caption"
+                      >{{ favoriteProducts.length }}
+                      {{ favoriteProducts.length > 1 ? "Items" : "Item" }}</span
+                    >
+                  </v-list-item-action-text>
                 </v-list-item>
               </v-list>
 
-              <v-card-actions>
-                <v-spacer></v-spacer>
+              <v-divider></v-divider>
 
+              <v-list v-if="favoriteProducts.length > 0">
+                <v-list-item
+                  v-for="product in favoriteProducts"
+                  :key="product.id"
+                >
+                  <v-card width="100%" flat link class="pa-1">
+                    <v-row>
+                      <v-col cols="3">
+                        <v-avatar size="60" tile class="rounded-lg">
+                          <v-img :src="product.images[0]"></v-img>
+                        </v-avatar>
+                      </v-col>
+                      <v-col cols="7">
+                        <div class="subtitle-2 text-truncate">
+                          {{
+                            product.title.length > 25
+                              ? product.title.slice(0, 25) + "..."
+                              : product.title
+                          }}
+                        </div>
+                        <div class="caption">
+                          {{ product.category.name }}
+                        </div>
+                      </v-col>
+                      <v-col cols="2">
+                        <div
+                          class="d-flex align-center justify-center"
+                          style="height: 100%"
+                        >
+                          <v-btn
+                            icon
+                            :ripple="false"
+                            @click.stop="removeFromFavorites(product)"
+                            color="error"
+                            class="index-top"
+                            ><v-icon>mdi-heart</v-icon></v-btn
+                          >
+                        </div>
+                      </v-col>
+                    </v-row>
+                  </v-card>
+                </v-list-item>
+              </v-list>
+              <v-list v-else class="py-0">
+                <v-list-item>
+                  <div class="body-2">No favorites yet !</div>
+                </v-list-item>
+              </v-list>
+              <v-divider></v-divider>
+              <div class="text-end">
                 <v-btn
-                  dark
                   text
-                  class="body-2 text-capitalize"
-                  @click="menu = false"
-                  color="grey"
+                  plain
+                  color="grey darken-4"
+                  class="text-capitalize"
+                  :ripple="false"
+                  >See more <v-icon right>mdi-arrow-right</v-icon></v-btn
                 >
-                  Close
-                </v-btn>
-                <v-btn
-                  dark
-                  depressed
-                  class="body-2 text-capitalize px-6"
-                  color="#32e2a9"
-                  @click="menu = false"
-                  >Checkout</v-btn
-                >
-              </v-card-actions>
+              </div>
             </v-card>
           </v-menu>
-          <v-btn icon color="blue darken-2">
-            <v-icon>mdi-heart-outline</v-icon>
-            <v-badge bordered content="1" color="red"></v-badge>
-          </v-btn>
         </v-list>
       </v-app-bar>
 
@@ -151,13 +310,20 @@ export default {
         { name: "Contact", path: "/contact", icon: "mdi-email-outline" },
       ],
       drawer: false,
-      menu: false,
+      shoppingCart: false,
+      favoritesCart: false,
     };
+  },
+  computed: {
+    favoriteProducts() {
+      return this.$store.getters.favoriteProducts;
+    },
+    cartProducts() {
+      return this.$store.getters.cartProducts;
+    },
   },
   methods: {
     drawerSet() {
-      console.log(this.$vuetify.breakpoint.name);
-      console.log(this.drawer);
       switch (this.$vuetify.breakpoint.name) {
         case "md":
           this.drawer = false;
@@ -167,11 +333,24 @@ export default {
           this.drawer = false;
       }
     },
+    removeFromFavorites(product) {
+      this.$store.dispatch("removeFromFavorite", product);
+    },
   },
 };
 </script>
 
 <style scoped>
+.d-ib {
+  display: block !important;
+  text-overflow: ellipsis;
+}
+
+.index-top {
+  position: relative;
+  z-index: 10;
+}
+
 .link {
   color: #1976d2 !important;
 }

@@ -2,7 +2,14 @@
   <v-app>
     <Navbar />
     <v-main>
-      <router-view />
+      <transition
+        name="fade"
+        mode="out-in"
+        enter-active-class="animate__animated animate__fadeIn"
+        leave-active-class="animate__animated animate__fadeOut"
+      >
+        <router-view />
+      </transition>
     </v-main>
     <v-divider></v-divider>
     <Footer />
@@ -20,12 +27,40 @@ export default {
   data: () => ({
     //
   }),
+  mounted() {
+    fetch("https://api.escuelajs.co/api/v1/products")
+      .then((res) => res.json())
+      .then((res) => {
+        // console.log(res);
+        this.$store.state.products = res;
+      })
+      .catch((err) => console.log(err));
+  },
 };
 </script>
 
-<style lang="scss">
+<style>
+.remove-bg::after,
+.remove-bg::before {
+  background: transparent !important;
+}
+</style>
+
+<style scoped lang="scss">
+.page {
+  position: relative;
+}
+
+.animate__animated {
+  animation-duration: 0.3s !important;
+}
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200&display=swap");
 $body-font-family: "poppins", sans-serif !default;
+
+* {
+  font-family: "poppins", sans-serif !important;
+}
 
 .v-application {
   * {
@@ -35,6 +70,6 @@ $body-font-family: "poppins", sans-serif !default;
 
 .v-application .text-lg-h3,
 .v-application .text-h5 {
-  font-family: $body-font-family, sans-serif !important;
+  font-family: "poppins", sans-serif !important;
 }
 </style>
