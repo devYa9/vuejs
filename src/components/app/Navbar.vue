@@ -40,7 +40,7 @@
             offset-x
             offset-y
             :min-width="minWidth"
-            width="fit-content"
+            class="mr-3"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -154,7 +154,7 @@
             offset-x
             offset-y
             :min-width="minWidth"
-            width="fit-content"
+            class="mr-3"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
