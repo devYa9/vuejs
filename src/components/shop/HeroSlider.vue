@@ -134,7 +134,7 @@ export default {
         } else {
           this.currentIndex = 0;
         }
-      }, 5000);
+      }, 5500);
       return slider;
     },
   },
@@ -151,7 +151,7 @@ export default {
       switch (this.$vuetify.breakpoint.name) {
         // Use in computed property
         case "xs":
-          return "600px";
+          return "620px";
         case "sm":
           return "570px";
         case "md":
@@ -161,7 +161,7 @@ export default {
         case "xl":
           return "500px";
         default:
-          return 500;
+          return "600px";
       }
     },
   },
@@ -170,6 +170,9 @@ export default {
     imageToPreload.src = require("@/assets/products/headset.png");
     imageToPreload.onload = () => {
       this.isLoading = false;
+      clearInterval(this.sl);
+      this.currentIndex = 0;
+      this.sl = this.startSlider();
     };
   },
 };

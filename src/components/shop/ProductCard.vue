@@ -6,7 +6,7 @@
           <v-avatar left min-height="150" tile size="100%">
             <v-img
               min-height="150"
-              height="200"
+              height="fit-content"
               max-height="250"
               width="100%"
               :src="product.images[0]"
@@ -25,7 +25,7 @@
         </v-col>
         <v-col cols="12" md="12" class="pa-0 py-4">
           <v-row class="">
-            <v-col cols="12" class="py-md-2 py-0 pt-n2" order="2" order-md="1">
+            <v-col cols="12" class="py-0 pt-md-2 mt-n1" order="2" order-md="1">
               <div class="px-md-8 px-5 caption">
                 {{ product.category.name }}
               </div>
@@ -36,31 +36,28 @@
                   px-md-8
                   py-2
                   px-5
-                  subtitle-1
+                  text-subtitle-2 text-md-subtitle-1
                   font-weight-bold
                   product-name
+                  text-truncate
                 "
               >
-                {{
-                  product.title.length > 25
-                    ? product.title.slice(0, 25) + "..."
-                    : product.title
-                }}
+                {{ product.title }}
               </div>
             </v-col>
             <v-col cols="12" class="py-0" order="3">
-              <div class="px-md-8 px-5 d-flex align-end flex-wrap">
+              <div class="px-md-8 px-5 d-flex align-center flex-wrap">
                 <v-rating
                   x-small
                   dense
                   color="yellow darken-2"
                   :value="5"
-                  class="mr-5"
+                  class="mr-1"
                 ></v-rating>
-                <div class="caption">342 reviews</div>
+                <div class="body-2 font-weight-black">4.9</div>
               </div>
             </v-col>
-            <v-col cols="12" class="py-md-5" order="4">
+            <v-col cols="12" class="py-2 mt-2" order="4">
               <div
                 class="px-md-8 px-5 d-flex justify-space-between align-center"
               >
@@ -74,7 +71,7 @@
                     >mdi-heart{{ isFavorite ? "" : "-outline" }}</v-icon
                   ></v-btn
                 >
-                <div class="text-md-h5 subtitle-1 font-weight-bold">
+                <div class="text-md-h5 text-subtitle-2 font-weight-bold">
                   ${{ product.price }}
                 </div>
                 <v-btn
@@ -98,7 +95,9 @@
 export default {
   props: ["product", "showBadge"],
   data() {
-    return {};
+    return {
+      title: this.product.title,
+    };
   },
   methods: {
     favorite(product) {
@@ -119,7 +118,7 @@ export default {
       });
       return status;
     },
-  },
+  }
 };
 </script>
 

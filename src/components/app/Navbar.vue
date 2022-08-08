@@ -40,6 +40,7 @@
             eager
             offset-y
             :min-width="minWidth"
+            max-width="360"
             transition="slide-x-transition"
           >
             <template v-slot:activator="{ on, attrs }">
@@ -57,13 +58,13 @@
                   v-if="cartProducts.length > 0"
                   bordered
                   :content="cartProducts.length"
-                  color="red"
+                  color="error"
                   light
                 ></v-badge>
               </v-btn>
             </template>
 
-            <v-card :min-width="minWidth" width="fit-content">
+            <v-card :min-width="minWidth">
               <v-list class="py-1">
                 <v-list-item class="py-0">
                   <v-list-item-content>
@@ -154,6 +155,7 @@
             eager
             offset-y
             :min-width="minWidth"
+            max-width="360"
             transition="slide-x-transition"
           >
             <template v-slot:activator="{ on, attrs }">
@@ -171,13 +173,13 @@
                   v-if="favoriteProducts.length > 0"
                   :content="favoriteProducts.length"
                   bordered
-                  color="red"
+                  color="error"
                   light
                 ></v-badge>
               </v-btn>
             </template>
 
-            <v-card :min-width="minWidth" width="fit-content">
+            <v-card :min-width="minWidth">
               <v-list class="py-1">
                 <v-list-item>
                   <v-list-item-content>
@@ -241,11 +243,13 @@
               </v-list>
               <v-list v-else class="py-0">
                 <v-list-item>
-                  <div class="body-2">No favorites yet !</div>
+                  <div class="body-2">
+                    No <v-icon small color="error">mdi-heart-outline</v-icon>
+                    yet !
+                  </div>
                 </v-list-item>
               </v-list>
-              <v-divider></v-divider>
-              <div class="text-end">
+              <div class="text-end" v-if="limitFavorites">
                 <v-btn
                   text
                   plain
@@ -317,16 +321,29 @@ export default {
     };
   },
   computed: {
-    favoriteProducts() {
+    limitFavorites() {
+      return this.$store.getters.favoriteProducts.length > 3;
+    },
+    favoriteProductsStore() {
       return this.$store.getters.favoriteProducts;
     },
     cartProducts() {
       return this.$store.getters.cartProducts;
     },
+    favoriteProducts() {
+      let l = this.favoriteProductsStore.length;
+      let p = this.favoriteProductsStore.map((x) => x);
+      if (l > 3) {
+        p = p.splice(l - 3, l).reverse();
+      } else {
+        p = this.favoriteProductsStore.reverse();
+      }
+      return p;
+    },
     minWidth() {
       switch (this.$vuetify.breakpoint.name) {
         case "xm":
-          return "280";
+          return "100%";
         case "sm":
           return "300";
         case "md":
@@ -335,8 +352,9 @@ export default {
           return "320";
         case "xl":
           return "350";
+        default:
+          return "300";
       }
-      return "250";
     },
   },
   methods: {
@@ -358,6 +376,11 @@ export default {
 </script>
 
 <style scoped>
+.v-menu__content {
+  right: 12px !important  ;
+  left: min(12px);
+}
+
 .d-ib {
   display: block !important;
   text-overflow: ellipsis;
