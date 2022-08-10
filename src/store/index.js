@@ -6,9 +6,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     products: [],
-    favoriteProducts: []
+    cartProducts: [],
+    favoriteProducts: [],
+    isLoaded: false
   },
   getters: {
+    products: state => {
+      return state.products
+    },
     productsByCategory: state => (id) => {
       return state.products.filter(product => {
         return product.category.id == id
@@ -18,7 +23,15 @@ export default new Vuex.Store({
       return state.favoriteProducts
     },
     cartProducts: state => {
-      return state.products.slice(0, 4)
+      return state.cartProducts
+    },
+    cartTotal: state => {
+      let total = 0
+      state.cartProducts.forEach(item => {
+        let t = item.order.qte * item.product.price
+        total += t
+      });
+      return total
     }
   },
   mutations: {
@@ -30,6 +43,14 @@ export default new Vuex.Store({
         return p.id != product.id
       })
     },
+    addToCart: (state, product) => {
+      state.cartProducts.push(product)
+    },
+    removeFromCart: (state, product) => {
+      state.cartProducts = state.cartProducts.filter(p => {
+        return p.id != product.id
+      })
+    },
 
   },
   actions: {
@@ -38,7 +59,13 @@ export default new Vuex.Store({
     },
     removeFromFavorite: (context, product) => {
       context.commit('removeFromFavorite', product)
-    }
+    },
+    addToCart: (context, product) => {
+      context.commit('addToCart', product)
+    },
+    removeFromCart: (context, product) => {
+      context.commit('removeFromCart', product)
+    },
   },
   modules: {}
 })

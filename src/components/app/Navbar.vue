@@ -66,16 +66,18 @@
 
             <v-card :min-width="minWidth">
               <v-list class="py-1">
-                <v-list-item class="py-0">
+                <v-list-item class="py-0" dense>
                   <v-list-item-content>
                     <v-list-item-title class="font-weight-bold"
-                      >Shoping Cart</v-list-item-title
+                      ><v-icon>mdi-cart-outline</v-icon></v-list-item-title
                     >
                   </v-list-item-content>
                   <v-list-item-action-text>
-                    <span class="caption"
-                      >{{ cartProducts.length }}
-                      {{ cartProducts.length > 1 ? "Items" : "Item" }}</span
+                    <span class="body-2 grey--text text--darken-2"
+                      >Total:
+                      <span class="blue--text text--darken-2 font-weight-medium"
+                        >${{ shoppingCartTotal }}</span
+                      ></span
                     >
                   </v-list-item-action-text>
                 </v-list-item>
@@ -84,21 +86,24 @@
               <v-divider></v-divider>
 
               <v-list v-if="cartProducts.length > 0">
-                <v-list-item v-for="product in cartProducts" :key="product.id">
+                <v-list-item
+                  v-for="item in cartProducts"
+                  :key="item.product.id"
+                >
                   <v-card width="100%" flat link class="pa-1">
                     <v-row>
                       <v-col cols="3">
                         <v-avatar size="60" tile class="rounded-lg">
-                          <v-img :src="product.images[0]"></v-img>
+                          <v-img :src="item.product.images[0]"></v-img>
                         </v-avatar>
                       </v-col>
-                      <v-col cols="9">
+                      <v-col cols="9" class="d-flex flex-column justify-center">
                         <div class="d-flex align-center justify-space-between">
-                          <div class="subtitle-2 d-block">
+                          <div class="subtitle-1 d-block">
                             {{
-                              product.title.length > 25
-                                ? product.title.slice(0, 25) + "..."
-                                : product.title
+                              item.product.title.length > 25
+                                ? item.product.title.slice(0, 25) + "..."
+                                : item.product.title
                             }}
                           </div>
                           <div class="">
@@ -107,19 +112,20 @@
                               icon
                               :ripple="false"
                               class="remove-bg pa-0"
-                              link
-                              to="/exit"
+                              @click="removeFromCart(item)"
                             >
                               <v-icon>mdi-close</v-icon>
                             </v-btn>
                           </div>
                         </div>
-                        <div class="caption">
-                          {{ product.category.name }}
-                        </div>
-                        <div class="caption d-flex justify-space-between">
-                          <div class="qte">Qte x 5</div>
-                          <div class="prix">$400.00</div>
+                        <div class="d-flex subtitle-2">
+                          <div class="prix blue--text text--darken-2">
+                            ${{ item.product.price }}
+                          </div>
+                          <div class="qte ml-10 grey--text text--darken-2">
+                            Quantity:
+                            <span class="">{{ item.order.qte }}</span>
+                          </div>
                         </div>
                       </v-col>
                     </v-row>
@@ -203,7 +209,13 @@
                   v-for="product in favoriteProducts"
                   :key="product.id"
                 >
-                  <v-card width="100%" flat link class="pa-1">
+                  <v-card
+                    width="100%"
+                    flat
+                    link
+                    class="pa-1"
+                    :to="'/shop/product/' + product.id"
+                  >
                     <v-row>
                       <v-col cols="3">
                         <v-avatar size="60" tile class="rounded-lg">
@@ -230,7 +242,7 @@
                           <v-btn
                             icon
                             :ripple="false"
-                            @click.stop="removeFromFavorites(product)"
+                            @click.prevent="removeFromFavorites(product)"
                             color="error"
                             class="index-top"
                             ><v-icon>mdi-heart</v-icon></v-btn
@@ -330,6 +342,9 @@ export default {
     cartProducts() {
       return this.$store.getters.cartProducts;
     },
+    shoppingCartTotal() {
+      return this.$store.getters.cartTotal;
+    },
     favoriteProducts() {
       let l = this.favoriteProductsStore.length;
       let p = this.favoriteProductsStore.map((x) => x);
@@ -343,7 +358,7 @@ export default {
     minWidth() {
       switch (this.$vuetify.breakpoint.name) {
         case "xm":
-          return "100%";
+          return "97%";
         case "sm":
           return "300";
         case "md":
@@ -353,7 +368,7 @@ export default {
         case "xl":
           return "350";
         default:
-          return "300";
+          return "290";
       }
     },
   },
@@ -370,6 +385,9 @@ export default {
     },
     removeFromFavorites(product) {
       this.$store.dispatch("removeFromFavorite", product);
+    },
+    removeFromCart(item) {
+      this.$store.dispatch("removeFromCart", item);
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <footer class="py-5">
+      <footer class="pa-3">
         <v-row>
           <v-col cols="12" md="4" class="px-md-10 px-2">
             <span class="text-h6 font-weight-bold blue--text text--darken-2">

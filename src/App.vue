@@ -3,13 +3,14 @@
     <Navbar />
     <v-main>
       <transition
+        v-if="false"
         name="fade"
         mode="out-in"
         enter-active-class="animate__animated animate__fadeIn"
         leave-active-class="animate__animated animate__fadeOut"
       >
-        <router-view />
       </transition>
+      <router-view />
     </v-main>
     <v-divider></v-divider>
     <Footer />
@@ -31,8 +32,8 @@ export default {
     fetch("https://api.escuelajs.co/api/v1/products")
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res);
         this.$store.state.products = res;
+        this.$store.state.isLoaded = true;
       })
       .catch((err) => console.log(err));
   },

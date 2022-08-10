@@ -27,7 +27,7 @@
               <v-img
                 eager
                 :class="'image-' + screen"
-                src="../../assets/products/xbox-controller.png"
+                src="../../assets/products/webp/xbox-controller.webp"
               ></v-img>
             </v-col>
           </v-row>
@@ -59,7 +59,7 @@
               <v-img
                 eager
                 :class="'image-' + screen"
-                src="../../assets/products/clock.png"
+                src="../../assets/products/webp/clock.webp"
               ></v-img>
             </v-col>
           </v-row>

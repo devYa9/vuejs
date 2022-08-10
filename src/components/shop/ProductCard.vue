@@ -1,6 +1,13 @@
 <template>
   <div class="card mb-5">
-    <v-card flat :ripple="false" class="pa-0" color="grey lighten-5" link to="">
+    <v-card
+      flat
+      :ripple="false"
+      class="pa-0"
+      color="grey lighten-5"
+      link
+      :to="'/shop/product/' + product.id"
+    >
       <v-row>
         <v-col cols="12" md="12" class="py-0 image-box">
           <v-avatar left min-height="150" tile size="100%">
@@ -65,7 +72,7 @@
                   :ripple="false"
                   icon
                   color="error"
-                  @click="favorite(product)"
+                  @click.prevent="favorite(product)"
                   class="remove-bg"
                   ><v-icon
                     >mdi-heart{{ isFavorite ? "" : "-outline" }}</v-icon
@@ -118,7 +125,7 @@ export default {
       });
       return status;
     },
-  }
+  },
 };
 </script>
 

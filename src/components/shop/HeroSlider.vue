@@ -89,7 +89,7 @@ export default {
           rating: "1245",
           currentPrice: "125.00",
           oldPrice: "250.00",
-          image: "assets/products/headset.png",
+          image: "assets/products/webp/headset.webp",
         },
         {
           name: "Puppy Dog Stuffed Toy Plush",
@@ -97,7 +97,7 @@ export default {
           rating: "2301",
           currentPrice: "50.00",
           oldPrice: "100.00",
-          image: "assets/products/puppy.png",
+          image: "assets/products/webp/puppy.webp",
         },
         {
           name: "Wedding Flower Sneaker",
@@ -105,7 +105,7 @@ export default {
           rating: "1401",
           currentPrice: "60.00",
           oldPrice: "120.00",
-          image: "assets/products/shoes.png",
+          image: "assets/products/webp/shoes.webp",
         },
         {
           name: "Air Jordan 4 Black & Yellow",
@@ -113,7 +113,7 @@ export default {
           rating: "1401",
           currentPrice: "160.00",
           oldPrice: "320.00",
-          image: "assets/products/shoes-1.png",
+          image: "assets/products/webp/shoes-1.webp",
         },
       ],
       sl: this.startSlider(),
@@ -167,7 +167,7 @@ export default {
   },
   created() {
     const imageToPreload = new Image();
-    imageToPreload.src = require("@/assets/products/headset.png");
+    imageToPreload.src = require("@/assets/products/webp/headset.webp");
     imageToPreload.onload = () => {
       this.isLoading = false;
       clearInterval(this.sl);

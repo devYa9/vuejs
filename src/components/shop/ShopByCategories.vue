@@ -50,22 +50,22 @@ export default {
       categories: [
         {
           name: "Beauty picks",
-          image: "assets/products/beauty-picks.png",
+          image: "assets/products/webp/beauty-picks.webp",
           to: "/shop/category/1",
         },
         {
           name: "Computer & Accessories",
-          image: "assets/products/macbook.png",
+          image: "assets/products/webp/macbook.webp",
           to: "/shop/category/2",
         },
         {
           name: "Video games",
-          image: "assets/products/vr.png",
+          image: "assets/products/webp/vr.webp",
           to: "/shop/category/3",
         },
         {
           name: "Shoes",
-          image: "assets/products/shoes.png",
+          image: "assets/products/webp/shoes.webp",
           to: "/shop/category/4",
         },
       ],

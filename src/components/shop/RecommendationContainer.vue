@@ -19,6 +19,7 @@
             :desc="box.desc"
             :image="box.image"
             :isUser="box.isUser"
+            :to="box.to"
           />
         </v-col>
       </v-row>
@@ -38,24 +39,28 @@ export default {
           title: "Hi, Yassine recommendations for you 👉",
           desc: "",
           isUser: true,
+          to: "/recommendation",
         },
         {
           image: "assets/products/box.png",
           title: "Your Orders",
           desc: "View your orders",
           isUser: false,
+          to: "/orders",
         },
         {
-          image: "assets/products/headset.png",
+          image: "assets/products/webp/headset.webp",
           title: "Electronics",
           desc: "Big Sale 30%",
           isUser: false,
+          to: "/shop/category/2",
         },
         {
-          image: "assets/products/pressure-cooker.png",
+          image: "assets/products/webp/pressure-cooker.webp",
           title: "Home & Kitchen",
           desc: "Big Sale 40%",
           isUser: false,
+          to: "/shop/category/1",
         },
       ],
     };

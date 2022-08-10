@@ -7,6 +7,7 @@
       color="transparent"
       elevation="0"
       class="pa-0"
+      :to="to"
     >
       <v-row class="pa-2">
         <v-col cols="5" lg="4" class="pa-2 d-flex justify-center align-center">
@@ -33,7 +34,7 @@
 
 <script>
 export default {
-  props: ["image", "title", "desc", "isUser"],
+  props: ["image", "title", "desc", "isUser", "to"],
   methods: {
     getImageLink(link) {
       return require("@/" + link);
