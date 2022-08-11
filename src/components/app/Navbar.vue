@@ -1,7 +1,7 @@
 <template>
   <nav>
     <v-container fluid>
-      <v-app-bar app flat width="100%" color="white">
+      <v-app-bar dense app flat width="100%" color="white">
         <v-app-bar-nav-icon
           @click="drawer = !drawer"
           color="blue darken-2"
@@ -20,7 +20,7 @@
               link
               rounded
               text
-              class="link text-capitalize ml-5"
+              class="link text-capitalize ml-2"
               :to="link.path"
               active-class="active"
             >
@@ -29,10 +29,8 @@
           </v-item>
         </v-item-group>
         <v-spacer></v-spacer>
-        <v-list class="pa-0">
-          <v-btn icon color="blue darken-2">
-            <v-icon>mdi-magnify</v-icon>
-          </v-btn>
+        <v-list class="pa-0 d-flex align-center">
+          <SearchBar />
 
           <ShoppingCart />
 
@@ -82,10 +80,11 @@
 </template>
 
 <script>
+import SearchBar from "./components/SearchBar.vue";
 import ShoppingCart from "./components/ShoppingCart.vue";
 import Favorites from "./components/Favorites.vue";
 export default {
-  components: { ShoppingCart, Favorites },
+  components: { ShoppingCart, Favorites, SearchBar },
   data() {
     return {
       links: [
