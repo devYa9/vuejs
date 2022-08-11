@@ -180,6 +180,9 @@ export default {
         };
         this.$store.dispatch("addToCart", product);
         this.qte = 1;
+        this.$store.state.snackbar = true;
+        let options = { active: true, subject: "addToCart", success: true };
+        this.$store.dispatch("toggleSnackbar", options);
       }
     },
   },

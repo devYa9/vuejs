@@ -86,10 +86,7 @@
               <v-divider></v-divider>
 
               <v-list v-if="cartProducts.length > 0">
-                <v-list-item
-                  v-for="item in cartProducts"
-                  :key="item.product.id"
-                >
+                <v-list-item v-for="(item, index) in cartProducts" :key="index">
                   <v-card width="100%" flat link class="pa-1">
                     <v-row>
                       <v-col cols="3">
@@ -173,14 +170,17 @@
                 v-bind="attrs"
                 v-on="on"
                 :ripple="false"
+                @click="favIcon = false"
               >
                 <v-icon>mdi-heart{{ favoritesCart ? "" : "-outline" }}</v-icon>
                 <v-badge
-                  v-if="favoriteProducts.length > 0"
+                  v-if="favoriteProducts.length > 0 && favIcon"
                   :content="favoriteProducts.length"
                   bordered
                   color="error"
                   light
+                  dot
+                  overlap
                 ></v-badge>
               </v-btn>
             </template>
@@ -330,7 +330,19 @@ export default {
       drawer: false,
       shoppingCart: false,
       favoritesCart: false,
+      favIcon: false,
+      favoriteCount: 0,
     };
+  },
+  watch: {
+    favoriteProductsStore(newValue) {
+      this.favoriteCount = newValue.length;
+    },
+    favoriteCount(n, o) {
+      if (n > o) {
+        this.favIcon = true;
+      }
+    },
   },
   computed: {
     limitFavorites() {

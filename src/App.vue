@@ -1,18 +1,15 @@
 <template>
   <v-app>
     <Navbar />
+
     <v-main>
-      <transition
-        v-if="false"
-        name="fade"
-        mode="out-in"
-        enter-active-class="animate__animated animate__fadeIn"
-        leave-active-class="animate__animated animate__fadeOut"
-      >
-      </transition>
       <router-view />
+
+      <Snackbar />
     </v-main>
+
     <v-divider></v-divider>
+
     <Footer />
   </v-app>
 </template>
@@ -20,9 +17,10 @@
 <script>
 import Navbar from "./components/app/Navbar.vue";
 import Footer from "./components/app/Footer.vue";
+import Snackbar from "./components/Snackbar.vue";
 
 export default {
-  components: { Navbar, Footer },
+  components: { Navbar, Footer, Snackbar },
   name: "App",
 
   data: () => ({
@@ -36,6 +34,7 @@ export default {
         this.$store.state.isLoaded = true;
       })
       .catch((err) => console.log(err));
+    console.log(this.$store.getters.snackbarOptions);
   },
 };
 </script>

@@ -5,12 +5,26 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    // App state
+    snackbar: false,
+    snackbarOptions: {
+      active: false,
+      subject: '',
+      success: false
+    },
+
+    // Products state
+    isLoaded: false,
     products: [],
     cartProducts: [],
     favoriteProducts: [],
-    isLoaded: false
+
   },
   getters: {
+    snackbarOptions: state => {
+      return state.snackbarOptions
+    },
+
     products: state => {
       return state.products
     },
@@ -35,6 +49,13 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+
+    // app mutations
+    toggleSnackbar: (state, options) => {
+      state.snackbarOptions = options
+    },
+
+    // Products mutations
     addToFavorite: (state, product) => {
       state.favoriteProducts.push(product)
     },
@@ -51,9 +72,17 @@ export default new Vuex.Store({
         return p.id != product.id
       })
     },
+    // end products mutations
+
 
   },
   actions: {
+    // app actions
+    toggleSnackbar: (context, options) => {
+      context.commit('toggleSnackbar', options)
+    },
+
+    // Products actions
     addToFavorite: (context, product) => {
       context.commit('addToFavorite', product)
     },
@@ -66,6 +95,7 @@ export default new Vuex.Store({
     removeFromCart: (context, product) => {
       context.commit('removeFromCart', product)
     },
+    // End products actions
   },
   modules: {}
 })
