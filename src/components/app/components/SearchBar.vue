@@ -1,5 +1,6 @@
 <template>
-  <div class="d-inline-flex wrapper">
+  <div class="d-inline-flex wrapper" v-click-outside="clickedOutside">
+    <!-- Md and up search input -->
     <div class="hidden-xs-only">
       <div class="d-flex align-center">
         <v-text-field
@@ -12,9 +13,12 @@
           filled
           ref="search"
           v-model="search"
+          @keydown.enter="searchAction"
         ></v-text-field>
       </div>
     </div>
+
+    <!-- Mobile search input -->
     <div class="mobile-search-bar hidden-sm-and-up" :class="{ closed: closed }">
       <div class="d-flex align-center">
         <v-text-field
@@ -26,6 +30,7 @@
           filled
           ref="search-mobile"
           v-model="search"
+          @keydown.enter="searchAction"
         ></v-text-field>
         <v-btn
           icon
@@ -33,12 +38,14 @@
           color="blue darken-2"
           class="remove-bg mx-3"
           :ripple="false"
-          @click="openSearchBarPc"
+          @click="searchAction"
         >
           <v-icon>mdi-magnify</v-icon></v-btn
         >
       </div>
     </div>
+
+    <!-- Md and up Search icon -->
     <div v-if="true" class="icon-container hidden-xs-only">
       <v-btn
         icon
@@ -50,6 +57,8 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
     </div>
+
+    <!-- mobile search icon -->
     <div v-if="true" class="icon-container hidden-sm-and-up">
       <v-btn
         icon
@@ -70,19 +79,31 @@ export default {
     return {
       closed: true,
       search: "",
+      isFocused: false,
     };
   },
   methods: {
-    openSearchBarPc() {
-      this.closed = !this.closed;
-      if (!this.closed) {
-        this.$refs.search.$el.getElementsByTagName("input")[0].focus();
-      } else {
-        this.$refs.search.$el.getElementsByTagName("input")[0].blur();
-      }
-      if (this.search) {
+    clickedOutside() {
+      this.closed = true;
+    },
+    searchAction() {
+      this.$store.dispatch("setSearchTerm", this.search);
+      this.closed = true;
+      if (this.$route.path != "/search") {
         this.$router.push("/search");
-        this.search = "";
+      }
+    },
+    openSearchBarPc() {
+      console.log("clicked");
+      if (this.search && this.closed == false) {
+        this.searchAction();
+      } else {
+        this.closed = !this.closed;
+        if (this.closed == false) {
+          this.$refs.search.$el.getElementsByTagName("input")[0].focus();
+        } else {
+          this.$refs.search.$el.getElementsByTagName("input")[0].blur();
+        }
       }
     },
     openSearchBarMobile() {
@@ -93,10 +114,6 @@ export default {
           .focus();
       } else {
         this.$refs["search-mobile"].$el.getElementsByTagName("input")[0].blur();
-      }
-      if (this.search) {
-        this.$router.push("/search");
-        this.search = "";
       }
     },
     closeSearchBar() {

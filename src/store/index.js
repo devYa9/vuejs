@@ -19,6 +19,11 @@ export default new Vuex.Store({
     cartProducts: [],
     favoriteProducts: [],
 
+    // search state
+    search: {
+      searchTerm: ''
+    }
+
   },
   getters: {
     snackbarOptions: state => {
@@ -46,6 +51,10 @@ export default new Vuex.Store({
         total += t
       });
       return total
+    },
+
+    searchTerm: state => {
+      return state.search.searchTerm
     }
   },
   mutations: {
@@ -74,7 +83,10 @@ export default new Vuex.Store({
     },
     // end products mutations
 
-
+    // searchmutation
+    setSearchTerm: (state, term) => {
+      state.search.searchTerm = term
+    }
   },
   actions: {
     // app actions
@@ -96,6 +108,11 @@ export default new Vuex.Store({
       context.commit('removeFromCart', product)
     },
     // End products actions
+
+    // search actions
+    setSearchTerm: (context, term) => {
+      context.commit('setSearchTerm', term)
+    }
   },
   modules: {}
 })
