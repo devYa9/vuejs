@@ -12,10 +12,11 @@
         <v-col cols="12" md="12" class="py-0 image-box">
           <v-avatar left min-height="150" tile size="100%">
             <v-img
-              min-height="150"
+              min-height="170"
               height="fit-content"
               max-height="250"
               width="100%"
+              eager
               :src="product.images[0]"
             >
               <v-sheet

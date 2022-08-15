@@ -35,6 +35,17 @@
           <ProductCard :showBadge="showBadge" :product="product" />
         </v-col>
       </v-row>
+      <v-row v-if="!isLoaded">
+        <v-col cols="6" sm="6" lg="3" v-for="n in 4" :key="n">
+          <v-sheet color="grey lighten-4">
+            <v-skeleton-loader
+              class="mx-auto"
+              width="100%"
+              type="card"
+            ></v-skeleton-loader>
+          </v-sheet>
+        </v-col>
+      </v-row>
     </div>
   </div>
 </template>
@@ -56,6 +67,9 @@ export default {
         products = products.splice(0, this.limit);
       }
       return products;
+    },
+    isLoaded() {
+      return this.$store.state.isLoaded;
     },
   },
 };
