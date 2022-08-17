@@ -89,8 +89,8 @@ export default {
     searchAction() {
       this.$store.dispatch("setSearchTerm", this.search);
       this.closed = true;
-      if (this.$route.path != "/search") {
-        this.$router.push("/search");
+      if (this.$route.path != "/shop/search") {
+        this.$router.push("/shop/search");
       }
     },
     openSearchBarPc() {

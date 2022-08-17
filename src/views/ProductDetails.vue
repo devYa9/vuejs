@@ -101,11 +101,9 @@
                     mandatory
                     active-class="blue darken-2 white--text"
                   >
-                    <v-chip value="S">S</v-chip>
-                    <v-chip value="M">M</v-chip>
-                    <v-chip value="L">L</v-chip>
-                    <v-chip value="XL">XL</v-chip>
-                    <v-chip value="XXL">XXL</v-chip>
+                    <v-chip v-for="s in sizes" :key="s" :value="s">{{
+                      s
+                    }}</v-chip>
                   </v-chip-group>
                 </div>
                 <div class="call-to-action mt-4">
@@ -201,6 +199,15 @@ export default {
         }
       });
       return status;
+    },
+    sizes() {
+      if (this.product.category.name == "Shoes") {
+        this.size = 5.5;
+        return [5.5, 6, 6.5, 7, 7.5, 8, 8.5];
+      } else {
+        this.size = "S";
+        return ["S", "M", "L", "XL", "XXL"];
+      }
     },
   },
   watch: {

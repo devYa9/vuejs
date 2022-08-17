@@ -6,6 +6,7 @@ import ComingSoon from '../views/ComingSoon.vue'
 import ProductsByCategory from "../views/ProductsByCategory";
 import ProductDetails from "../views/ProductDetails";
 import Search from "../views/Search";
+import Checkout from "../views/Checkout.vue";
 
 
 Vue.use(VueRouter)
@@ -31,9 +32,14 @@ const routes = [{
     component: ProductDetails
   },
   {
-    path: '/search',
+    path: '/shop/search',
     name: 'search',
     component: Search
+  },
+  {
+    path: '/shop/checkout',
+    name: 'checkout',
+    component: Checkout
   },
   {
     path: '/:catchAll(.*)',

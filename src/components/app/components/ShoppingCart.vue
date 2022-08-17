@@ -74,7 +74,7 @@
                       icon
                       :ripple="false"
                       class="remove-bg pa-0"
-                      @click="removeFromCart(item)"
+                      @click="removeFromCart(index)"
                     >
                       <v-icon>mdi-close</v-icon>
                     </v-btn>
@@ -110,7 +110,7 @@
             color="#32e2a9"
             @click="shoppingCart = false"
             link
-            to="/checkout"
+            to="/shop/checkout"
             >Checkout <v-icon>mdi-chevron-right</v-icon></v-btn
           >
         </v-card-actions>

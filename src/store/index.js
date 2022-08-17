@@ -77,8 +77,8 @@ export default new Vuex.Store({
       state.cartProducts.push(product)
     },
     removeFromCart: (state, product) => {
-      state.cartProducts = state.cartProducts.filter(p => {
-        return p.id != product.id
+      state.cartProducts = state.cartProducts.filter((p, i) => {
+        return i != product
       })
     },
     // end products mutations
