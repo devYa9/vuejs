@@ -1,7 +1,17 @@
 <template>
-  <div class="my-md-10">
+  <div class="my-md-5">
     <LoaderView v-if="!isLoaded" />
     <v-container v-if="isLoaded">
+      <div class="mb-5 mt-n5">
+        <v-btn
+          text
+          color="grey darken-3"
+          class="text-capitalize pl-0 remove-bg"
+          @click="goBack()"
+          :ripple="false"
+          ><v-icon left>mdi-chevron-left</v-icon>Back to shopping</v-btn
+        >
+      </div>
       <div v-if="!notFound">
         <transition
           mode="out-in"
@@ -182,6 +192,9 @@ export default {
         let options = { active: true, subject: "addToCart", success: true };
         this.$store.dispatch("toggleSnackbar", options);
       }
+    },
+    goBack() {
+      this.$router.back();
     },
   },
   computed: {
