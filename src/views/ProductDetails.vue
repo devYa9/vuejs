@@ -182,8 +182,10 @@ export default {
     },
     addToCart() {
       if (this.qte) {
+        let id = this.$store.state.cartProductId;
+
         let product = {
-          order: { qte: this.qte, size: this.size },
+          order: { id: id, qte: this.qte, size: this.size },
           product: this.product,
         };
         this.$store.dispatch("addToCart", product);
@@ -191,6 +193,7 @@ export default {
         this.$store.state.snackbar = true;
         let options = { active: true, subject: "addToCart", success: true };
         this.$store.dispatch("toggleSnackbar", options);
+        this.$store.state.cartProductId += 1;
       }
     },
     goBack() {

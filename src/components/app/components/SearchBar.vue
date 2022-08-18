@@ -145,6 +145,7 @@ export default {
 }
 
 .mobile-search-bar.closed {
+  pointer-events: none;
   opacity: 0;
   transform: translateX(-53%);
 }

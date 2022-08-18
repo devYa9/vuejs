@@ -11,40 +11,68 @@ import Checkout from "../views/Checkout.vue";
 
 Vue.use(VueRouter)
 
+const DEFAULT_TITLE = 'SoftBox Solutions';
+
 const routes = [{
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    meta: {
+      title: DEFAULT_TITLE
+    }
   },
   {
     path: '/shop',
     name: 'shop',
-    component: ShopView
+    component: ShopView,
+    meta: {
+      title: "SoftBox Shop"
+    }
   },
   {
     path: '/shop/category/:id',
     name: 'category',
-    component: ProductsByCategory
+    component: ProductsByCategory,
+    meta: {
+      title: "SoftBox Shop"
+    }
   },
   {
     path: '/shop/product/:id',
     name: 'product',
-    component: ProductDetails
+    component: ProductDetails,
+
+    meta: {
+      title: "SoftBox Shop"
+    }
+
   },
   {
     path: '/shop/search',
     name: 'search',
-    component: Search
+    component: Search,
+    meta: {
+      title: "Search"
+    }
+
   },
   {
     path: '/shop/checkout',
     name: 'checkout',
-    component: Checkout
+    component: Checkout,
+    meta: {
+      title: "Checkout"
+    }
+
   },
   {
     path: '/:catchAll(.*)',
     name: 'commingSoon',
-    component: ComingSoon
+    component: ComingSoon,
+    meta: {
+      title: "SoftBox"
+    }
+
   }
 ]
 
@@ -54,5 +82,10 @@ const router = new VueRouter({
   routes
 })
 
+router.afterEach((to, from) => {
+  Vue.nextTick(() => {
+    document.title = to.meta.title || DEFAULT_TITLE
+  })
+})
 
 export default router

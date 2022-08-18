@@ -51,8 +51,8 @@
       <v-divider></v-divider>
 
       <v-list v-if="cartProducts.length > 0">
-        <v-list-item v-for="(item, index) in cartProducts" :key="index">
-          <v-card width="100%" flat link class="pa-1">
+        <v-list-item v-for="item in cartProductsToShow" :key="item.order.id">
+          <v-card width="100%" flat class="pa-1">
             <v-row>
               <v-col cols="3">
                 <v-avatar size="60" tile class="rounded-lg">
@@ -74,7 +74,7 @@
                       icon
                       :ripple="false"
                       class="remove-bg pa-0"
-                      @click="removeFromCart(index)"
+                      @click="removeFromCart(item.order.id)"
                     >
                       <v-icon>mdi-close</v-icon>
                     </v-btn>
@@ -99,6 +99,7 @@
           <div class="body-2">No products yet !</div>
         </v-list-item>
       </v-list>
+      <div class="text-center text-h6" v-if="limitProducts">...</div>
       <div v-if="cartProducts.length > 0">
         <v-divider></v-divider>
         <v-card-actions>
@@ -127,6 +128,19 @@ export default {
     };
   },
   computed: {
+    cartProductsToShow() {
+      let l = this.cartProducts.length;
+      let p = this.cartProducts.map((x) => x);
+      if (l > 3) {
+        p = p.splice(l - 3, l).reverse();
+      } else {
+        p = this.cartProducts.reverse();
+      }
+      return p;
+    },
+    limitProducts() {
+      return this.$store.getters.cartProducts.length > 3;
+    },
     cartProducts() {
       return this.$store.getters.cartProducts;
     },

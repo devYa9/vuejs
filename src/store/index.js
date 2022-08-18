@@ -17,6 +17,7 @@ export default new Vuex.Store({
     isLoaded: false,
     products: [],
     cartProducts: [],
+    cartProductId: 1,
     favoriteProducts: [],
 
     // search state
@@ -74,11 +75,13 @@ export default new Vuex.Store({
       })
     },
     addToCart: (state, product) => {
+      console.log(state.cartProducts.length);
       state.cartProducts.push(product)
+      console.log(state.cartProducts.length);
     },
-    removeFromCart: (state, product) => {
-      state.cartProducts = state.cartProducts.filter((p, i) => {
-        return i != product
+    removeFromCart: (state, productId) => {
+      state.cartProducts = state.cartProducts.filter(p => {
+        return p.order.id != productId
       })
     },
     // end products mutations
@@ -104,8 +107,8 @@ export default new Vuex.Store({
     addToCart: (context, product) => {
       context.commit('addToCart', product)
     },
-    removeFromCart: (context, product) => {
-      context.commit('removeFromCart', product)
+    removeFromCart: (context, productId) => {
+      context.commit('removeFromCart', productId)
     },
     // End products actions
 
