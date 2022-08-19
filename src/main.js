@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import '@/assets/global.css'
+import SweetAlertIcons from 'vue-sweetalert-icons';
 
 Vue.config.productionTip = false
 
@@ -11,5 +12,6 @@ new Vue({
   router,
   store,
   vuetify,
+  SweetAlertIcons,
   render: h => h(App)
 }).$mount('#app')

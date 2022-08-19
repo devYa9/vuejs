@@ -1,6 +1,6 @@
 <template>
   <div class="mt-n5">
-    <v-container>
+    <v-container v-if="!paymentDone">
       <div>
         <v-btn
           text
@@ -212,6 +212,7 @@
                   depressed
                   color="blue"
                   class="white--text text-capitalize"
+                  @click="pay"
                   >Checkout & Pay
                   <v-icon right>mdi-chevron-right</v-icon></v-btn
                 >
@@ -244,6 +245,7 @@
             <v-btn
               depressed
               color="blue"
+              @click="pay"
               large
               class="text-capitalize white--text flex-fill"
               >Checkout & Pay<v-icon right>mdi-chevron-right</v-icon></v-btn
@@ -252,16 +254,50 @@
         </div>
       </div>
     </v-container>
+    <v-container v-if="paymentDone">
+      <v-sheet
+        height="500"
+        class="d-flex flex-column justify-center align-center"
+      >
+        <div class="mt-5 d-flex align-center justify-center flex-column">
+          <sweetalert-icon :icon="icon" :color="iconColor" />
+          <div class="text-h5" :style="{ color: iconColor, minHeight: '30px' }">
+            {{ msg }}
+          </div>
+          <div>
+            <v-btn
+              :color="iconColor"
+              class="text-capitalize mt-10"
+              link
+              to="/orders"
+              v-if="icon == 'success'"
+              large
+              depressed
+              dark
+              >View Orders <v-icon right>mdi-chevron-right</v-icon></v-btn
+            >
+          </div>
+        </div>
+      </v-sheet>
+    </v-container>
   </div>
 </template>
 
 <script>
+import SweetalertIcon from "vue-sweetalert-icons";
 export default {
+  components: { SweetalertIcon },
   data() {
     return {
       layer: 1,
       from: 0,
       to: 3,
+      msg: "Checking...",
+      paymentDone: false,
+      icon: "loading",
+      iconColor: "#2196F3",
+      success: "#32e2a9",
+      successMsg: "You placed an order !",
     };
   },
   watch: {
@@ -292,6 +328,15 @@ export default {
     },
   },
   methods: {
+    pay() {
+      this.paymentDone = !this.paymentDone;
+      setTimeout(() => {
+        this.iconColor = "#32e2a9";
+        this.icon = "success";
+        this.msg = this.successMsg;
+        this.$store.state.cartProducts = [];
+      }, 2000);
+    },
     goBack() {
       this.$router.back();
     },
